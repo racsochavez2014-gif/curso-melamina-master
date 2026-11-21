@@ -7,12 +7,23 @@
   <meta name="description" content="Aprende a diseñar, cortar, armar e instalar muebles modernos en melamina desde cero. Incluye 6 bonos exclusivos, acceso de por vida y certificado oficial." />
   <meta name="keywords" content="curso de melamina, carpinteria en melamina, fabricar muebles en melamina, melamina master, planos de melamina" />
   <meta name="robots" content="index, follow" />
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Swiper CSS (Carrusel Interactivo) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  
+  <!-- AOS CSS (Animaciones al hacer scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
     .btn-pulse {
       animation: pulse-gold 2s infinite;
     }
@@ -21,13 +32,48 @@
       70% { box-shadow: 0 0 0 14px rgba(234, 179, 8, 0); }
       100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
     }
+    .float-slow {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    /* Personalización Swiper */
+    .swiper-button-next, .swiper-button-prev {
+      color: #fbbf24 !important;
+      background: rgba(15, 23, 42, 0.85);
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 9999px;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    .swiper-button-next::after, .swiper-button-prev::after {
+      font-size: 16px !important;
+      font-weight: bold;
+    }
+    .swiper-pagination-bullet {
+      background: #94a3b8 !important;
+    }
+    .swiper-pagination-bullet-active {
+      background: #fbbf24 !important;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-400 selection:text-slate-950">
 
-  <!-- BARRA SUPERIOR DE URGENCIA -->
-  <div class="bg-amber-400 text-slate-950 text-center py-2.5 px-4 text-xs sm:text-sm font-extrabold tracking-wide uppercase">
-    🔥 Inscripciones Abiertas 2026 • 65% de Descuento + 6 Bonos Exclusivos Hoy
+  <!-- BARRA SUPERIOR FIJA CON CONTADOR REGRESIVO -->
+  <div class="sticky top-0 z-50 bg-amber-400 text-slate-950 py-2.5 px-4 shadow-lg">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm font-extrabold tracking-wide uppercase">
+      <span>🔥 65% DTO + 6 BONOS TERMINA EN:</span>
+      <div class="inline-flex items-center gap-1.5 bg-slate-950 text-amber-400 px-3 py-1 rounded-lg font-mono text-sm sm:text-base">
+        <span id="timer-hours">00</span>:<span id="timer-minutes">14</span>:<span id="timer-seconds">59</span>
+      </div>
+      <a href="https://go.hotmart.com/V108192785U?ap=3046" target="_blank" rel="noopener noreferrer"
+         class="hidden md:inline-block bg-slate-950 hover:bg-slate-800 text-white text-xs px-3 py-1 rounded-md transition">
+        APROVECHAR OFERTA →
+      </a>
+    </div>
   </div>
 
   <!-- HERO SECTION -->
@@ -36,7 +82,7 @@
       <div class="grid lg:grid-cols-12 gap-10 items-center">
         
         <!-- Texto Principal -->
-        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6" data-aos="fade-right">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
             <span>★ Curso Online 100% Práctico</span>
             <span>•</span>
@@ -85,9 +131,9 @@
           </div>
         </div>
 
-        <!-- Imagen Principal de Oferta -->
-        <div class="lg:col-span-5">
-          <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400/40 shadow-2xl shadow-amber-500/10 bg-slate-900">
+        <!-- Imagen Principal con flotación suave -->
+        <div class="lg:col-span-5" data-aos="fade-left">
+          <div class="float-slow relative rounded-2xl overflow-hidden border-2 border-amber-400/40 shadow-2xl shadow-amber-500/10 bg-slate-900">
             <img src="oferta.jpg" alt="Curso Online Melamina Master Inscripciones Abiertas" class="w-full h-auto object-cover" />
           </div>
         </div>
@@ -99,23 +145,23 @@
   <!-- BENEFICIOS / PARA QUIÉN ES -->
   <section class="py-16 px-4 sm:px-6 bg-slate-950 border-b border-slate-900">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3" data-aos="fade-up">
         <h2 class="text-2xl sm:text-4xl font-extrabold text-white">¿Qué lograrás con <span class="text-amber-400">Melamina Master</span>?</h2>
         <p class="text-slate-400 text-sm sm:text-base">Un método directo al grano, diseñado para que pases de la teoría a armar muebles con acabados de fábrica.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3">
+        <div class="bg-slate-900/80 border border-slate-800 hover:border-amber-400/40 transition p-6 rounded-2xl space-y-3" data-aos="fade-up" data-aos-delay="100">
           <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-2xl font-bold">📐</div>
           <h3 class="text-lg font-bold text-white">Medidas y Cortes Exactos</h3>
           <p class="text-sm text-slate-400 leading-relaxed">Aprende a calcular despieces sin desperdiciar material y pide tus tableros listos para ensamblar.</p>
         </div>
-        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3">
+        <div class="bg-slate-900/80 border border-slate-800 hover:border-amber-400/40 transition p-6 rounded-2xl space-y-3" data-aos="fade-up" data-aos-delay="200">
           <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-2xl font-bold">🪚</div>
           <h3 class="text-lg font-bold text-white">Ensamblaje y Acabado Limpio</h3>
           <p class="text-sm text-slate-400 leading-relaxed">Domina el atornillado, colocación de tapacantos, bisagras cangrejo y tapa tornillos invisibles.</p>
         </div>
-        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3">
+        <div class="bg-slate-900/80 border border-slate-800 hover:border-amber-400/40 transition p-6 rounded-2xl space-y-3" data-aos="fade-up" data-aos-delay="300">
           <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-2xl font-bold">💼</div>
           <h3 class="text-lg font-bold text-white">Ahorra o Emprende</h3>
           <p class="text-sm text-slate-400 leading-relaxed">Fabrica los muebles de tu hogar ahorrando hasta un 60% o vende proyectos bajo pedido con alta rentabilidad.</p>
@@ -127,7 +173,7 @@
   <!-- TEMARIO COMPLETO DEL CURSO -->
   <section id="temario" class="py-16 px-4 sm:px-6 bg-slate-900/40 border-b border-slate-900">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3" data-aos="fade-up">
         <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Programa de Estudios 2026</span>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Contenido Completo del Curso</h2>
         <p class="text-slate-400 text-sm sm:text-base">Clases en video HD paso a paso organizadas en 4 módulos prácticos que puedes ver a tu ritmo.</p>
@@ -135,7 +181,7 @@
 
       <div class="grid md:grid-cols-2 gap-6 mb-12">
         <!-- Módulo 1 -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4" data-aos="fade-up">
           <div class="flex items-center justify-between">
             <span class="px-3 py-1 rounded-lg bg-amber-400 text-slate-950 text-xs font-black uppercase">Módulo 1</span>
             <span class="text-xs text-slate-400">Bases del Curso</span>
@@ -149,7 +195,7 @@
         </div>
 
         <!-- Módulo 2 -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4" data-aos="fade-up" data-aos-delay="100">
           <div class="flex items-center justify-between">
             <span class="px-3 py-1 rounded-lg bg-amber-400 text-slate-950 text-xs font-black uppercase">Módulo 2</span>
             <span class="text-xs text-slate-400">Equipo y Materiales</span>
@@ -165,7 +211,7 @@
         </div>
 
         <!-- Módulo 3 -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4" data-aos="fade-up">
           <div class="flex items-center justify-between">
             <span class="px-3 py-1 rounded-lg bg-amber-400 text-slate-950 text-xs font-black uppercase">Módulo 3</span>
             <span class="text-xs text-slate-400">Herrajes</span>
@@ -177,13 +223,13 @@
         </div>
 
         <!-- Plataforma Visual -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex items-center justify-center" data-aos="fade-up" data-aos-delay="100">
           <img src="plataforma.png" alt="Plataforma de Clases Hotmart PC y Móvil" class="w-full h-full object-cover" />
         </div>
       </div>
 
       <!-- Módulo 4 Destacado (10 Proyectos) -->
-      <div class="bg-gradient-to-br from-slate-900 to-slate-900/90 border-2 border-amber-400/30 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="bg-gradient-to-br from-slate-900 to-slate-900/90 border-2 border-amber-400/30 rounded-2xl p-6 sm:p-8 space-y-6" data-aos="zoom-in-up">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <span class="px-3.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-xs font-black uppercase">Módulo 4 • 100% Práctico</span>
           <span class="text-xs sm:text-sm text-amber-300 font-semibold">Incluye: Medidas, Armado, Limpieza y Colocado de Tapa Tornillos</span>
@@ -235,7 +281,7 @@
       </div>
 
       <!-- CTA Intermedio -->
-      <div class="text-center mt-10">
+      <div class="text-center mt-10" data-aos="fade-up">
         <a href="https://go.hotmart.com/V108192785U?ap=3046" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-base sm:text-lg transition shadow-lg">
           ACCEDER AL CURSO COMPLETO POR SOLO $25 USD →
@@ -247,17 +293,17 @@
   <!-- 6 BONOS EXCLUSIVOS -->
   <section class="py-16 px-4 sm:px-6 bg-slate-950 border-b border-slate-900">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
+      <div class="text-center max-w-3xl mx-auto mb-10 space-y-3" data-aos="fade-up">
         <span class="px-3 py-1 rounded-full bg-amber-400/10 text-amber-400 text-xs font-bold uppercase tracking-wider">Regalos Incluidos Hoy</span>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Llévate <span class="text-amber-400">+ 6 Bonos Exclusivos</span> Gratis con tu Inscripción</h2>
         <p class="text-slate-400 text-sm sm:text-base">Material descargable y soporte para acelerar tus primeros proyectos desde el primer día.</p>
       </div>
 
       <div class="grid lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-6">
+        <div class="lg:col-span-6" data-aos="fade-right">
           <img src="bonos.jpg" alt="6 Bonos Exclusivos Melamina Master" class="rounded-2xl border border-slate-800 shadow-2xl w-full h-auto" />
         </div>
-        <div class="lg:col-span-6 space-y-3.5">
+        <div class="lg:col-span-6 space-y-3.5" data-aos="fade-left">
           <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex items-start gap-3.5">
             <span class="px-2.5 py-1 rounded bg-amber-400 text-slate-950 font-black text-xs">BONO 1</span>
             <div>
@@ -308,7 +354,7 @@
   <!-- CERTIFICADO OFICIAL -->
   <section class="py-16 px-4 sm:px-6 bg-slate-900/40 border-b border-slate-900">
     <div class="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-6 space-y-4">
+      <div class="lg:col-span-6 space-y-4" data-aos="fade-right">
         <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Respaldo Académico</span>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Recibe tu Certificado de Finalización</h2>
         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -321,51 +367,146 @@
           </a>
         </div>
       </div>
-      <div class="lg:col-span-6">
+      <div class="lg:col-span-6" data-aos="fade-left">
         <img src="certificado.jpg" alt="Certificado Oficial Curso de Melamina" class="rounded-2xl border-2 border-amber-400/30 shadow-2xl w-full h-auto" />
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIOS Y RESULTADOS REALES -->
+  <!-- CARRUSEL INTERACTIVO DE TESTIMONIOS -->
   <section class="py-16 px-4 sm:px-6 bg-slate-950 border-b border-slate-900">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+      <div class="text-center max-w-3xl mx-auto mb-10 space-y-3" data-aos="fade-up">
         <span class="text-emerald-400 font-bold text-xs uppercase tracking-widest">Comunidad Internacional</span>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Alumnos Reales, Trabajos Reales</h2>
-        <p class="text-slate-400 text-sm sm:text-base">Estudiantes de toda Latinoamérica y España ya están aplicando lo aprendido y recibiendo su certificación.</p>
+        <p class="text-slate-400 text-sm sm:text-base">Desliza para ver los muebles terminados, certificados emitidos y nuevos ingresos de nuestros estudiantes.</p>
       </div>
 
-      <!-- Destacados: Trabajo terminado y Certificado -->
-      <div class="grid md:grid-cols-2 gap-6 mb-8 max-w-4xl mx-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3">
-          <img src="testimonio-mueble.jpg" alt="Trabajo terminado de alumno Aron" class="rounded-xl w-full h-auto object-cover" />
-          <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">✅ <strong>Aron (España):</strong> Proyecto de escritorio y muebles aéreos entregado a cliente satisfecho.</p>
+      <!-- Contenedor Swiper -->
+      <div class="swiper testimoniosSwiper pb-12" data-aos="fade-up">
+        <div class="swiper-wrapper">
+          
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 h-full">
+              <img src="testimonio-mueble.jpg" alt="Trabajo terminado de alumno Aron" class="rounded-xl w-full h-80 object-cover object-top" />
+              <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">✅ <strong>Aron (España):</strong> Proyecto de escritorio y muebles aéreos entregado a cliente.</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 h-full">
+              <img src="testimonio-certificado.jpg" alt="Alumno Kevin con su certificado" class="rounded-xl w-full h-80 object-cover object-top" />
+              <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">🎓 <strong>Kevin Rubio (México):</strong> Certificado oficial recibido al finalizar el curso.</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 h-full">
+              <img src="testimonio-compra1.jpg" alt="Inscripción aprobada Alexis Perú" class="rounded-xl w-full h-80 object-cover object-top" />
+              <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">🇵🇪 <strong>Alexis (Perú):</strong> Acceso inmediato aprobado vía Hotmart.</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="swiper-slide">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 h-full">
+              <img src="testimonio-compra2.jpg" alt="Inscripción aprobada Juan Argentina" class="rounded-xl w-full h-80 object-cover object-top" />
+              <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">🇦🇷 <strong>Juan (Argentina):</strong> Nuevo alumno unido a la comunidad privada.</p>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="swiper-slide">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 h-full">
+              <img src="testimonio-compra3.jpg" alt="Inscripción aprobada Santiago El Salvador" class="rounded-xl w-full h-80 object-cover object-top" />
+              <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">🇸🇻 <strong>Santiago (El Salvador):</strong> Inscripción confirmada en moneda local.</p>
+            </div>
+          </div>
+
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3">
-          <img src="testimonio-certificado.jpg" alt="Alumno Kevin con su certificado" class="rounded-xl w-full h-auto object-cover" />
-          <p class="text-xs sm:text-sm text-slate-300 text-center font-medium">🎓 <strong>Kevin Rubio (México):</strong> Certificado oficial recibido al finalizar el programa.</p>
-        </div>
+        <!-- Botones y paginación -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES DESPLEGABLES (FAQ) -->
+  <section class="py-16 px-4 sm:px-6 bg-slate-900/30 border-b border-slate-900">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10 space-y-3" data-aos="fade-up">
+        <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Resolvemos tus dudas</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Preguntas Frecuentes</h2>
       </div>
 
-      <!-- Comprobantes de nuevos alumnos -->
-      <div class="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3">
-          <img src="testimonio-compra1.jpg" alt="Inscripción aprobada Alexis Perú" class="rounded-xl w-full h-auto" />
+      <div class="space-y-3" data-aos="fade-up">
+        
+        <!-- FAQ 1 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left flex items-center justify-between font-bold text-white hover:text-amber-400 transition">
+            <span>¿Necesito tener experiencia previa o taller propio?</span>
+            <span class="faq-icon text-amber-400 text-xl font-black transition-transform">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            No necesitas experiencia previa ni maquinaria industrial. En el curso te enseñamos cómo calcular las medidas exactas para que en la distribuidora donde compres la melamina te entreguen las piezas ya cortadas y canteadas, y tú solo necesites herramientas básicas manuales (taladro/atornillador) para armar en casa.
+          </div>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3">
-          <img src="testimonio-compra2.jpg" alt="Inscripción aprobada Juan Argentina" class="rounded-xl w-full h-auto" />
+
+        <!-- FAQ 2 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left flex items-center justify-between font-bold text-white hover:text-amber-400 transition">
+            <span>¿Cómo y cuándo recibo el acceso al curso y los 6 bonos?</span>
+            <span class="faq-icon text-amber-400 text-xl font-black transition-transform">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            El acceso es 100% inmediato. Apenas completes tu inscripción en Hotmart, recibirás un correo electrónico con tu usuario y enlace directo para entrar a la plataforma desde tu celular, tablet o computadora, disponible las 24 horas y de por vida.
+          </div>
         </div>
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3">
-          <img src="testimonio-compra3.jpg" alt="Inscripción aprobada Santiago El Salvador" class="rounded-xl w-full h-auto" />
+
+        <!-- FAQ 3 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left flex items-center justify-between font-bold text-white hover:text-amber-400 transition">
+            <span>¿Puedo pagar en la moneda de mi país?</span>
+            <span class="faq-icon text-amber-400 text-xl font-black transition-transform">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            Sí. Al hacer clic en cualquier botón de inscripción, la plataforma de Hotmart detecta automáticamente tu país y convierte los $25 USD a tu moneda local (pesos, soles, quetzales, colones, euros, etc.), permitiéndote pagar con tarjeta de crédito, débito, PayPal o pagos en efectivo autorizados.
+          </div>
         </div>
+
+        <!-- FAQ 4 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left flex items-center justify-between font-bold text-white hover:text-amber-400 transition">
+            <span>¿Es un pago único o debo pagar mensualidades?</span>
+            <span class="faq-icon text-amber-400 text-xl font-black transition-transform">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            Es un único pago de $25 USD para toda la vida. No existen cobros recurrentes ni mensualidades ocultas, e incluye todas las actualizaciones futuras del programa sin costo adicional.
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left flex items-center justify-between font-bold text-white hover:text-amber-400 transition">
+            <span>¿Qué pasa si el curso no cumple mis expectativas?</span>
+            <span class="faq-icon text-amber-400 text-xl font-black transition-transform">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            Cuentas con una garantía incondicional de satisfacción de 7 días respaldada directamente por Hotmart. Si dentro de los primeros 7 días sientes que el contenido no es para ti, puedes solicitar el reembolso del 100% de tu dinero con un par de clics.
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- SECCIÓN DE CIERRE Y OFERTA FINAL -->
   <section id="inscripcion" class="py-20 px-4 sm:px-6 bg-gradient-to-b from-slate-900 to-slate-950">
-    <div class="max-w-3xl mx-auto bg-slate-900 border-2 border-amber-400 rounded-3xl p-8 sm:p-12 text-center shadow-2xl space-y-6">
+    <div class="max-w-3xl mx-auto bg-slate-900 border-2 border-amber-400 rounded-3xl p-8 sm:p-12 text-center shadow-2xl space-y-6" data-aos="zoom-in">
       <span class="inline-block px-4 py-1.5 rounded-full bg-red-500/20 text-red-400 text-xs font-black uppercase tracking-wider">
         Oferta por Tiempo Limitado
       </span>
@@ -401,6 +542,88 @@
     <p>© 2026 Melamina Master • LG Academia Capacitaciones. Todos los derechos reservados.</p>
     <p class="mt-1">Este sitio no es parte de Facebook ni de Google. La compra y entrega del curso se procesan de forma segura a través de Hotmart.</p>
   </footer>
+
+  <!-- SCRIPTS INTERACTIVOS -->
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // 1. Inicializar Animaciones al hacer Scroll
+    AOS.init({
+      duration: 700,
+      once: true,
+      offset: 60
+    });
+
+    // 2. Inicializar Carrusel de Testimonios
+    const swiper = new Swiper('.testimoniosSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+
+    // 3. Acordeón de Preguntas Frecuentes (FAQ)
+    document.querySelectorAll('.faq-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Cerrar todos los demás
+        document.querySelectorAll('.faq-content').forEach(item => item.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(ic => ic.textContent = '+');
+
+        // Abrir el actual si estaba cerrado
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          icon.textContent = '−';
+        }
+      });
+    });
+
+    // 4. Contador Regresivo (15 minutos persistentes por sesión)
+    let timeLeft = sessionStorage.getItem('melamina_timer') 
+      ? parseInt(sessionStorage.getItem('melamina_timer'), 10) 
+      : 15 * 60;
+
+    function updateTimer() {
+      const hours = Math.floor(timeLeft / 3600);
+      const minutes = Math.floor((timeLeft % 3600) / 60);
+      const seconds = timeLeft % 60;
+
+      document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('timer-minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('timer-seconds').textContent = String(seconds).padStart(2, '0');
+
+      if (timeLeft > 0) {
+        timeLeft--;
+        sessionStorage.setItem('melamina_timer', timeLeft);
+      } else {
+        timeLeft = 15 * 60; // Reinicia suave si llega a cero
+      }
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
 
 </body>
 </html>
